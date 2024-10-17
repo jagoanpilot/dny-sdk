@@ -1,17 +1,20 @@
 {
-  "name": "@pancakeswap-libs/sdk",
+  "name": "@tesyutubswap/sdk",
   "license": "MIT",
-  "version": "1.0.1",
-  "description": "🛠 An SDK for building applications on top of pancakeswap.",
+  "version": "2.4.0",
+  "description": "🛠 An SDK for building applications on top of Pancakeswap.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "repository": "https://github.com/exyted1/dny-sdk.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pancakeswap/pancake-swap-sdk.git"
+  },
   "keywords": [
     "pancakeswap",
-    "ethereum"
+    "bsc"
   ],
   "module": "dist/sdk.esm.js",
   "scripts": {
@@ -22,7 +25,7 @@
     "prepublishOnly": "tsdx build"
   },
   "dependencies": {
-    "@uniswap/v2-core": "^1.0.0",
+    "@pancakeswap-libs/pancake-swap-core": "exyted1/core",
     "big.js": "^5.2.2",
     "decimal.js-light": "^2.5.0",
     "jsbi": "^3.1.1",
@@ -55,5 +58,13 @@
     "printWidth": 120,
     "semi": false,
     "singleQuote": true
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/pancakeswap/pancake-swap-sdk/issues"
+  },
+  "homepage": "https://github.com/pancakeswap/pancake-swap-sdk#readme",
+  "directories": {
+    "test": "test"
+  },
+  "author": "plaxswap"
 }

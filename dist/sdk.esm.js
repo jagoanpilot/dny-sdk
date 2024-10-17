@@ -10,7 +10,7 @@ import { keccak256, pack } from '@ethersproject/solidity';
 import { Contract } from '@ethersproject/contracts';
 import { getNetwork } from '@ethersproject/networks';
 import { getDefaultProvider } from '@ethersproject/providers';
-import IPancakePair from '@pancakeswap-libs/pancake-swap-core/build/IPancakePair.json';
+import IUniswapV2Pair from '@uniswap/v2-core/build/IUniswapV2Pair.json';
 
 var _SOLIDITY_TYPE_MAXIMA;
 var ChainId;
@@ -35,8 +35,8 @@ var Rounding;
   Rounding[Rounding["ROUND_UP"] = 2] = "ROUND_UP";
 })(Rounding || (Rounding = {}));
 
-var FACTORY_ADDRESS = '0xDFc3D08A7d3B6e1131192aF971b3CAE83004D534';
-var INIT_CODE_HASH = '0x43ff5a711ec4b6f5ff40abcf456510056c7beec71a35ae9375819a240886cb9e';
+var FACTORY_ADDRESS = '0x07D718E432dA8f86690E978368ff4BE5C2198098';
+var INIT_CODE_HASH = '0x1edc432e37d8130ca09eb270800bf79dae608817b83b2cda55d858bf8c17e67b';
 var MINIMUM_LIQUIDITY = /*#__PURE__*/JSBI.BigInt(1000); // exports for internal consumption
 
 var ZERO = /*#__PURE__*/JSBI.BigInt(0);
@@ -46,8 +46,8 @@ var THREE = /*#__PURE__*/JSBI.BigInt(3);
 var FIVE = /*#__PURE__*/JSBI.BigInt(5);
 var TEN = /*#__PURE__*/JSBI.BigInt(10);
 var _100 = /*#__PURE__*/JSBI.BigInt(100);
-var FEES_NUMERATOR = /*#__PURE__*/JSBI.BigInt(9975);
-var FEES_DENOMINATOR = /*#__PURE__*/JSBI.BigInt(10000);
+var _997 = /*#__PURE__*/JSBI.BigInt(997);
+var _1000 = /*#__PURE__*/JSBI.BigInt(1000);
 var SolidityType;
 
 (function (SolidityType) {
@@ -435,7 +435,7 @@ function currencyEquals(currencyA, currencyB) {
     return currencyA === currencyB;
   }
 }
-var WETH = (_WETH = {}, _WETH[ChainId.MAINNET] = /*#__PURE__*/new Token(ChainId.MAINNET, '0x9829509cc1C745188059F06bd4c79EDa927744aD', 18, 'WDNY', 'Wrapped DNY'), _WETH[ChainId.BSCTESTNET] = /*#__PURE__*/new Token(ChainId.BSCTESTNET, '0xaE8E19eFB41e7b96815649A6a60785e1fbA84C1e', 18, 'WBNB', 'Wrapped BNB'), _WETH);
+var WETH = (_WETH = {}, _WETH[ChainId.MAINNET] = /*#__PURE__*/new Token(ChainId.MAINNET, '0x9829509cc1C745188059F06bd4c79EDa927744aD', 18, 'WDNY', 'Wrapped DNY'), _WETH[ChainId.BSCTESTNET] = /*#__PURE__*/new Token(ChainId.BSCTESTNET, '0xaE8E19eFB41e7b96815649A6a60785e1fbA84C1e', 18, 'WDNY', 'Wrapped DNY'), _WETH);
 
 var _toSignificantRoundin, _toFixedRounding;
 var Decimal = /*#__PURE__*/toFormat(_Decimal);
@@ -818,9 +818,9 @@ var Pair = /*#__PURE__*/function () {
 
     var inputReserve = this.reserveOf(inputAmount.token);
     var outputReserve = this.reserveOf(inputAmount.token.equals(this.token0) ? this.token1 : this.token0);
-    var inputAmountWithFee = JSBI.multiply(inputAmount.raw, FEES_NUMERATOR);
+    var inputAmountWithFee = JSBI.multiply(inputAmount.raw, _997);
     var numerator = JSBI.multiply(inputAmountWithFee, outputReserve.raw);
-    var denominator = JSBI.add(JSBI.multiply(inputReserve.raw, FEES_DENOMINATOR), inputAmountWithFee);
+    var denominator = JSBI.add(JSBI.multiply(inputReserve.raw, _1000), inputAmountWithFee);
     var outputAmount = new TokenAmount(inputAmount.token.equals(this.token0) ? this.token1 : this.token0, JSBI.divide(numerator, denominator));
 
     if (JSBI.equal(outputAmount.raw, ZERO)) {
@@ -839,8 +839,8 @@ var Pair = /*#__PURE__*/function () {
 
     var outputReserve = this.reserveOf(outputAmount.token);
     var inputReserve = this.reserveOf(outputAmount.token.equals(this.token0) ? this.token1 : this.token0);
-    var numerator = JSBI.multiply(JSBI.multiply(inputReserve.raw, outputAmount.raw), FEES_DENOMINATOR);
-    var denominator = JSBI.multiply(JSBI.subtract(outputReserve.raw, outputAmount.raw), FEES_NUMERATOR);
+    var numerator = JSBI.multiply(JSBI.multiply(inputReserve.raw, outputAmount.raw), _1000);
+    var denominator = JSBI.multiply(JSBI.subtract(outputReserve.raw, outputAmount.raw), _997);
     var inputAmount = new TokenAmount(outputAmount.token.equals(this.token0) ? this.token1 : this.token0, JSBI.add(JSBI.divide(numerator, denominator), ONE));
     return [inputAmount, new Pair(inputReserve.add(inputAmount), outputReserve.subtract(outputAmount))];
   };
@@ -1552,7 +1552,7 @@ var Fetcher = /*#__PURE__*/function () {
       if (provider === undefined) provider = getDefaultProvider(getNetwork(tokenA.chainId));
       !(tokenA.chainId === tokenB.chainId) ? process.env.NODE_ENV !== "production" ? invariant(false, 'CHAIN_ID') : invariant(false) : void 0;
       var address = Pair.getAddress(tokenA, tokenB);
-      return Promise.resolve(new Contract(address, IPancakePair.abi, provider).getReserves()).then(function (_ref) {
+      return Promise.resolve(new Contract(address, IUniswapV2Pair.abi, provider).getReserves()).then(function (_ref) {
         var reserves0 = _ref[0],
             reserves1 = _ref[1];
         var balances = tokenA.sortsBefore(tokenB) ? [reserves0, reserves1] : [reserves1, reserves0];

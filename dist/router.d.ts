@@ -30,11 +30,11 @@ export interface TradeOptionsDeadline extends Omit<TradeOptions, 'ttl'> {
     deadline: number;
 }
 /**
- * The parameters to use in the call to the Pancake Router to execute a trade.
+ * The parameters to use in the call to the Jagoan Router to execute a trade.
  */
 export interface SwapParameters {
     /**
-     * The method to call on the Pancake Router.
+     * The method to call on the Jagoan Router.
      */
     methodName: string;
     /**
@@ -47,7 +47,7 @@ export interface SwapParameters {
     value: string;
 }
 /**
- * Represents the Pancake Router, and has static methods for helping execute trades.
+ * Represents the Jagoan Router, and has static methods for helping execute trades.
  */
 export declare abstract class Router {
     /**

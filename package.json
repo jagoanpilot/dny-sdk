@@ -2,7 +2,7 @@
   "name": "@tesyutubswap/sdk",
   "license": "MIT",
   "version": "2.4.0",
-  "description": "🛠 An SDK for building applications on top of Pancakeswap.",
+  "description": "🛠 An SDK for building applications on top of Jagoanswap.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
@@ -10,10 +10,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pancakeswap/pancake-swap-sdk.git"
+    "url": "git+https://github.com/jagoanswap/jagoan-swap-sdk.git"
   },
   "keywords": [
-    "pancakeswap",
+    "jagoanswap",
     "bsc"
   ],
   "module": "dist/sdk.esm.js",
@@ -60,9 +60,9 @@
     "singleQuote": true
   },
   "bugs": {
-    "url": "https://github.com/pancakeswap/pancake-swap-sdk/issues"
+    "url": "https://github.com/jagoanswap/jagoan-swap-sdk/issues"
   },
-  "homepage": "https://github.com/pancakeswap/pancake-swap-sdk#readme",
+  "homepage": "https://github.com/jagoanswap/jagoan-swap-sdk#readme",
   "directories": {
     "test": "test"
   },

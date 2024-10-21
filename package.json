@@ -1,18 +1,20 @@
 {
-  "name": "quickswap-sdk",
+  "name": "@udin/sdk",
   "license": "MIT",
-  "version": "3.0.32",
-  "description": "🛠 An SDK for building applications on top of Quickswap.",
+  "version": "2.4.0",
+  "description": "🛠 An SDK for building applications on top of Pancakeswap.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "repository": "https://github.com/sameepsi/quickswap-sdk.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pancakeswap/pancake-swap-sdk.git"
+  },
   "keywords": [
-    "quickswap",
-    "matic",
-    "ethereum"
+    "pancakeswap",
+    "bsc"
   ],
   "module": "dist/sdk.esm.js",
   "scripts": {
@@ -23,7 +25,7 @@
     "prepublishOnly": "tsdx build"
   },
   "dependencies": {
-    "@uniswap/v2-core": "^1.0.0",
+    "@pancakeswap-libs/pancake-swap-core": "^0.1.0",
     "big.js": "^5.2.2",
     "decimal.js-light": "^2.5.0",
     "jsbi": "^3.1.1",
@@ -56,5 +58,13 @@
     "printWidth": 120,
     "semi": false,
     "singleQuote": true
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/pancakeswap/pancake-swap-sdk/issues"
+  },
+  "homepage": "https://github.com/pancakeswap/pancake-swap-sdk#readme"
 }
